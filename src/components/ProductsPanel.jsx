@@ -16,30 +16,35 @@ export default function ProductsPanel({
     <section className="panel grid">
       <div>
         <div className="panel__header">
-          <h2>Termékek</h2>
-          <button onClick={onRefresh}>Lista frissítése</button>
+          <h2>📦 Termékek</h2>
+          <button onClick={onRefresh}>Frissítés</button>
         </div>
         {products.length === 0 ? (
-          <p className="muted">Nincs termék</p>
+          <div className="empty-state">
+            <div className="empty-state-icon">📦</div>
+            <p>Nincs termék</p>
+          </div>
         ) : (
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Név</th>
-                <th>Ár</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((p) => (
-                <tr key={p.id || p.productId || p.name} onClick={() => onSelect(p)}>
-                  <td>{p.id ?? p.productId ?? '—'}</td>
-                  <td>{p.name ?? '—'}</td>
-                  <td>{p.price ?? '—'}</td>
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Név</th>
+                  <th>Ár</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {products.map((p) => (
+                  <tr key={p.id || p.productId || p.name} onClick={() => onSelect(p)}>
+                    <td>{p.id ?? p.productId ?? '—'}</td>
+                    <td>{p.name ?? '—'}</td>
+                    <td>{p.price ?? '—'} Ft</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 

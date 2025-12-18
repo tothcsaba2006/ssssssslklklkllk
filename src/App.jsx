@@ -254,7 +254,7 @@ function App() {
 
   useEffect(() => {
     refreshAll()
-  },)
+  }, [] )
 
   return (
     <div className="page">

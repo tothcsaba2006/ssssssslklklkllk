@@ -17,28 +17,33 @@ export default function CustomersPanel({
     <section className="panel grid">
       <div>
         <div className="panel__header">
-          <h2>Ügyfelek</h2>
-          <button onClick={onRefresh}>Lista frissítése</button>
+          <h2>👥 Ügyfelek</h2>
+          <button onClick={onRefresh}>Frissítés</button>
         </div>
         {customers.length === 0 ? (
-          <p className="muted">Nincs ügyfél</p>
+          <div className="empty-state">
+            <div className="empty-state-icon">👤</div>
+            <p>Nincs ügyfél</p>
+          </div>
         ) : (
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Név</th>
-              </tr>
-            </thead>
-            <tbody>
-              {customers.map((c, idx) => (
-                <tr key={c.id || c.customerId || idx} onClick={() => onSelect(c)}>
-                  <td>{c.id ?? c.customerId ?? '—'}</td>
-                  <td>{c.name ?? '—'}</td>
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Név</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {customers.map((c, idx) => (
+                  <tr key={c.id || c.customerId || idx} onClick={() => onSelect(c)}>
+                    <td>{c.id ?? c.customerId ?? '—'}</td>
+                    <td>{c.name ?? '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 
